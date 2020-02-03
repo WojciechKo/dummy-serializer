@@ -1,4 +1,6 @@
 # Dummy::Serializer
+[![Gem Version](https://badge.fury.io/rb/dummy-serializer.svg)](https://badge.fury.io/rb/dummy-serializer)
+![RSpec](https://github.com/WojciechKo/dummy-serializer/workflows/RSpec/badge.svg?branch=master)
 
 Serializer built to practice building custom DSL.
 
