@@ -70,5 +70,44 @@ RSpec.describe Dummy::Serializer do
         end
       end
     end
+
+    context 'inheritance' do
+      let(:base_class) do
+        Class.new(described_class) do
+          attribute :id
+        end
+      end
+
+      context 'extend existing serializer' do
+        let(:serializer_class) do
+          Class.new(base_class) do
+            attribute :name
+          end
+        end
+
+        it 'returns values for attributes defined in base and child class' do
+          expect(serialize).to eq(
+            id: 123,
+            name: 'Ruby'
+          )
+        end
+      end
+
+      context 'override attribute definition' do
+        let(:serializer_class) do
+          Class.new(base_class) do
+            attribute :id do
+              42
+            end
+          end
+        end
+
+        it 'returns value as defined in child serilizer' do
+          expect(serialize).to eq(
+            id: 42
+          )
+        end
+      end
+    end
   end
 end

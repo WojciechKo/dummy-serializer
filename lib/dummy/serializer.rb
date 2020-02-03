@@ -9,7 +9,11 @@ module Dummy
     end
 
     def serialize
-      self.class.attributes
+      self.class.ancestors
+        .grep(Attributes)
+        .reverse
+        .map(&:attributes)
+        .reduce(:merge)
         .transform_values(&resolve_attributes)
     end
 
